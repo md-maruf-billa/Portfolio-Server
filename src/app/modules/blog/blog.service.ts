@@ -22,6 +22,10 @@ const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
   const result = await blogQueries.queryModel
   return result
 }
+const getSingleBlogFromDB = async (id: string) => {
+  const result = await BlogModel.findById(id)
+  return result
+}
 
 // udpdate blog
 const updateBlogIntoDB = async (id: string, payload: Partial<TBlog>) => {
@@ -46,5 +50,6 @@ export const blogSerices = {
   createABlogIntoDB,
   getAllBlogsFromDB,
   updateBlogIntoDB,
-  deleteBlogFromDB
+  deleteBlogFromDB,
+  getSingleBlogFromDB
 }

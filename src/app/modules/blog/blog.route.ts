@@ -21,6 +21,7 @@ blogRouter.post(
 
 // get all blogs
 blogRouter.get('/', blogController.getAllBlogs)
+blogRouter.get('/:id', blogController.getSingleBlog)
 
 // update blog
 blogRouter.patch(
