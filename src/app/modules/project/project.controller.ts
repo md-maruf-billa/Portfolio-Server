@@ -1,7 +1,11 @@
 import catchAsync from '../../utils/catchAsync'
 import sendResponse from '../../utils/sendResponse'
 import status from 'http-status'
-import { porjectServices as projectServices } from './project.service'
+import {
+  porjectServices,
+  porjectServices as projectServices
+} from './project.service'
+
 import { TProject } from './project.interface'
 
 const createProject = catchAsync(async (req, res) => {
@@ -34,9 +38,31 @@ const getSingleProject = catchAsync(async (req, res) => {
     statusCode: status.OK
   })
 })
+const updateProject = catchAsync(async (req, res) => {
+  const result = await porjectServices.updateProjectIntoDb(
+    req.params.id,
+    req.body
+  )
+  sendResponse(res, {
+    message: 'Project updated successfully',
+    data: result,
+    statusCode: status.OK
+  })
+})
+
+const deleteProject = catchAsync(async (req, res) => {
+  await porjectServices.deleteProjectFromDB(req.params.id)
+  sendResponse(res, {
+    message: 'Project deleted successfully',
+    statusCode: status.OK,
+    data: null
+  })
+})
+
 
 export const projectControllers = {
   createProject,
   getAllProject,
-  getSingleProject
+getSingleProject, updateProject, deleteProject
+
 }

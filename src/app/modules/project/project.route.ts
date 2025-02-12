@@ -10,7 +10,11 @@ projectRoute.post(
   '/create-project',
   upload.single('image'),
   (req: Request, res: Response, next: NextFunction) => {
+console.log(req.body.data)
+console.log(req.file)
+
     req.body = JSON.parse(req.body.data)
+
     next()
   },
   checkSchemaValidation(projectValidations.createProjectValidation),
@@ -19,5 +23,12 @@ projectRoute.post(
 
 projectRoute.get('/all-project', projectControllers.getAllProject)
 projectRoute.get('/:id', projectControllers.getSingleProject)
+projectRoute.patch(
+  '/:id',
+  checkSchemaValidation(projectValidations.updateProjectValidation),
+  projectControllers.updateProject
+)
+projectRoute.delete('/:id', projectControllers.deleteProject)
+
 
 export default projectRoute

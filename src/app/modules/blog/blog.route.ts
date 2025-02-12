@@ -26,7 +26,8 @@ blogRouter.get('/:id', blogController.getSingleBlog)
 // update blog
 blogRouter.patch(
   '/:id',
-  checkUserTokenIsValid('user'),
+// checkUserTokenIsValid('user'),
+
   checkSchemaValidation(blogValidations.updateBlogValidationSchema),
   blogController.updateABlog
 )
