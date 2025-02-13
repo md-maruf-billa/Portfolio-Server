@@ -1,6 +1,8 @@
-# Blog Backend API
+# Portfolio Backend API
 
-- #### Live Link - `https://assignment-3-phi-lovat.vercel.app/`
+- #### Live Link - `https://portfolio-eng-maruf-billas-projects.vercel.app/`
+
+
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -29,7 +31,8 @@
 
 ## Project Overview
 
-This project is a backend server for a blogging platform where users can write, update, and delete their own blogs, while administrators have extended permissions to manage users and their blogs. The platform includes secure authentication, role-based access control, and a public API that allows users to view blogs with search, sort, and filter functionalities.
+This project is a backend server for a blogging platform where users can write, update, and delete their own blogs,projects and messages while administrators have extended permissions to manage users and their blogs. The platform includes secure authentication, role-based access control, and a public API that allows users to view blogs with search, sort, and filter functionalities.
+
 
 
 ## Installation 
@@ -107,6 +110,16 @@ npm run start:dev
 - `isPublished`: boolean (default: true)
 - `createdAt`: Date
 - `updatedAt`: Date
+#### Message Model
+
+- `messageTitle`: string
+- `messageBody`: string
+- `user`: {
+  - `name`:string
+  - `email`:string
+  - `photo`:string
+    }
+
 
 ## Used API Endpoints
 
@@ -150,8 +163,39 @@ npm run start:dev
   - `sortBy`: Sort by specific fields (e.g., `createdAt`).
   - `sortOrder`: Sorting order (e.g., `desc`).
   - `filter`: Filter by author ID.
+#### Create Project
 
-### Admin Actions
+- **POST** `/api/project/create-project`
+- Creates a new Project for a logged-in user.
+- Request: Requires Authorization header with Bearer `token`.
+- `Note`: form data needed.
+- Response: `201 Created` with blog details.
+
+#### Update Project
+
+- **PATCH** `/api/project/:id`
+- Allows a user to update their own Project by ID.
+- Request: Requires Authorization header with Bearer `token`.
+- Response: `200 OK` with updated blog details.
+
+
+#### Delete Blog
+
+- **DELETE** `/api/project/:id`
+- Allows a user to delete their own Project by ID.
+- Request:Requires Authorization header with Bearer `token`.
+- Response: `200 OK` with success message.
+
+#### Get All Blogs (Public)
+
+- **GET** `/api/projects`
+- Fetches all Project with options for searching, sorting, and filtering.
+- Query Parameters:
+  - `search`: Search by title or content.
+  - `sortBy`: Sort by specific fields (e.g., `createdAt`).
+  - `sortOrder`: Sorting order (e.g., `desc`).
+  - `filter`: Filter by author ID.
+
 
 #### Block User
 - **PATCH** `/api/admin/users/:userId/block`

@@ -35,7 +35,8 @@ blogRouter.patch(
 // delete a blog
 blogRouter.delete(
   '/:id',
-  checkUserTokenIsValid('user'),
+// checkUserTokenIsValid('user'),
+
   blogController.deleteBlog
 )
 

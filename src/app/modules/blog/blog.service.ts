@@ -29,10 +29,6 @@ const getSingleBlogFromDB = async (id: string) => {
 
 // udpdate blog
 const updateBlogIntoDB = async (id: string, payload: Partial<TBlog>) => {
-  const blogExist = await BlogModel.isBlogExist(id)
-  if (!blogExist) {
-    throw new AppError(httpStatus.NOT_FOUND, 'Blog Not Found!!!')
-  }
   const result = await BlogModel.findByIdAndUpdate(id, payload, { new: true })
   return result
 }

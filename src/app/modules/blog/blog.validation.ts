@@ -8,7 +8,8 @@ const createBlogValidationSchema = z.object({
 
 const updateBlogValidationSchema = z.object({
   title: z.string().optional(),
-  content: z.string().optional()
+  content: z.string().optional(),
+  blogTags: z.array(z.string()).optional()
 })
 
 export const blogValidations = {
